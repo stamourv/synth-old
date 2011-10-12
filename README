@@ -1,0 +1,42 @@
+Modular Synth Simulator
+
+Usage:
+./synth.sh <synthesis-program.scm> <outfile.wav>
+./play.sh <synthesis-program.scm>
+
+Dependencies:
+- Gambit Scheme (for synthesis)
+- Python + Scipy (for encoding, didn't bother writing a wav encoder)
+
+To synthesize:
+Synthesis is described as Scheme programs. `load' the sequencer, then
+use its functions to describe what you want to synthesize, and call
+`signal->wavfile' on the result.
+The examples in the `examples' subdirectory may help.
+
+Features:
+- Sine waves
+- Additive synthesis (the `weighted-harmonics' function)
+- Square waves
+- Sawtooth waves
+- Sequencing
+- Scale and arpeggio generation
+- Chords
+- Drum machine
+- Multi-track (the `dub' function)
+
+This is meant to be modular, so other modules should be easy to add.
+Ideas:
+- "Voltage" Controlled Filters (VCFs)
+- ADSR envelopes
+
+
+WARNING
+Sampling rate oddities may happen. I blame scipy.
+
+CAVEAT
+This is nowhere near real time.
+No effort whatsoever went into optimizing anything at all.
+In fact, some decisions were pretty dumb performance-wise.
+Switching from lists to, say, ropes to represent signals would
+probably be a huge improvement. Patches welcome.
